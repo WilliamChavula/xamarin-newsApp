@@ -1,9 +1,13 @@
 ﻿using System;
 using Prism;
 using Prism.Ioc;
+using Prism.Mvvm;
 using Prism.Unity;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using xamarinnewsApp.Services;
+using xamarinnewsApp.ViewModels;
+using xamarinnewsApp.Views;
 
 namespace xamarin_newsApp
 {
@@ -17,13 +21,17 @@ namespace xamarin_newsApp
         protected override void OnInitialized()
         {
             InitializeComponent();
-            NavigationService.NavigateAsync("MainPage");
+            NavigationService.NavigateAsync("Headlines");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
-            containerRegistry.RegisterForNavigation<MainPage>();
+            containerRegistry.RegisterForNavigation<Headlines, HeadlinesViewModel>();
+            containerRegistry.RegisterSingleton<INewsService, NewsService>();
+
         }
+
+
     }
 }
