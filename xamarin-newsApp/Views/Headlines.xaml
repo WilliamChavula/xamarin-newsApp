@@ -21,9 +21,10 @@
                     FontFamily="Chomsky-Font"
                     FontSize="28"
                     HorizontalOptions="StartAndExpand"
-                    Text="The New York Times" />
+                    Text="The New York Times"
+                    TextColor="Black" />
                 <Frame
-                    Padding="8,-5"
+                    Padding="{OnPlatform iOS='8,-5', Android='8,4'}"
                     BackgroundColor="#EEEEEE"
                     CornerRadius="8"
                     HasShadow="False"
@@ -52,6 +53,7 @@
                         FontSize="24"
                         HorizontalOptions="StartAndExpand"
                         Text="US Politics"
+                        TextColor="Black"
                         VerticalOptions="Center" />
                     <Frame
                         Padding="8,4"
@@ -71,28 +73,26 @@
                     Margin="0,10"
                     HeightRequest="250"
                     HorizontalScrollBarVisibility="Never"
-                    ItemsSource="{Binding HeadlineNews.Articles}"
-                    WidthRequest="100">
+                    ItemsSource="{Binding Articles}"
+                    WidthRequest="80">
                     <CollectionView.ItemsLayout>
-                        <LinearItemsLayout ItemSpacing="20" Orientation="Horizontal" />
+                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10"/>
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-
                             <Frame
-                                BackgroundColor="LightGray"
+                                Padding="0"
                                 CornerRadius="8"
-                                HasShadow="False"
-                                HeightRequest="250"
                                 IsClippedToBounds="True"
-                                WidthRequest="280">
-                                <Image
-                                    Aspect="AspectFill"
+                                HasShadow="False"
+                                HorizontalOptions="End"
+                                VerticalOptions="Center">
+                                <Image WidthRequest="300" HeightRequest="250"
                                     HorizontalOptions="Center"
                                     Source="{Binding UrlToImage}"
+                                    Aspect="AspectFill"
                                     VerticalOptions="Center" />
                             </Frame>
-
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
@@ -109,6 +109,7 @@
                         FontSize="24"
                         HorizontalOptions="StartAndExpand"
                         Text="Middle East"
+                        TextColor="Black"
                         VerticalOptions="Center" />
                     <Frame
                         Padding="8,4"
