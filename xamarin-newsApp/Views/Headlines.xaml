@@ -7,28 +7,21 @@
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     prism:ViewModelLocator.AutowireViewModel="True">
     <ScrollView VerticalScrollBarVisibility="Never">
-        <Grid Margin="30,40,30,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+        <Grid Margin="30,40,30,0" RowDefinitions="Auto, Auto, *">
 
             <!--  Header  -->
             <StackLayout Orientation="Horizontal">
 
                 <Label
-                    FontFamily="Chomsky-Font"
-                    FontSize="28"
                     HorizontalOptions="StartAndExpand"
                     ScaleX="1.1"
                     ScaleY="1.5"
-                    Text="The New York Times"
-                    TextColor="Black" />
+                    Style="{StaticResource HeaderLabelStyle}"
+                    Text="The New York Times" />
                 <Frame
                     Padding="{OnPlatform iOS='8,-5',
                                          Android='8,4'}"
-                    BackgroundColor="#EEEEEE"
+                    BackgroundColor="{StaticResource AccentBackgroundColor}"
                     CornerRadius="8"
                     HasShadow="False"
                     HorizontalOptions="End"
@@ -39,36 +32,30 @@
                                 FontFamily="fa-solid"
                                 Glyph="{x:Static local:IconFontSolid.Search}"
                                 Size="18"
-                                Color="Gray" />
+                                Color="{StaticResource TextFontColor}" />
                         </ImageButton.Source>
                     </ImageButton>
                 </Frame>
 
             </StackLayout>
-            <Grid Grid.Row="1" Margin="0,30,0,0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
+            <Grid
+                Grid.Row="1"
+                Margin="0,30,0,0"
+                RowDefinitions="Auto, *">
                 <StackLayout Orientation="Horizontal">
                     <Label
-                        FontFamily="Roboto-Black"
-                        FontSize="24"
                         HorizontalOptions="StartAndExpand"
+                        Style="{StaticResource SubHeaderLabelStyle}"
                         Text="US Politics"
-                        TextColor="Black"
                         VerticalOptions="Center" />
                     <Frame
                         Padding="8,4"
-                        BackgroundColor="#EEEEEE"
+                        BackgroundColor="{StaticResource AccentBackgroundColor}"
                         CornerRadius="8"
                         HasShadow="False"
                         HorizontalOptions="End"
                         VerticalOptions="Center">
-                        <Label
-                            FontFamily="OpenSans-SemiBold"
-                            FontSize="14"
-                            Text="Show all" />
+                        <Label Style="{StaticResource MoreContentBackgroundColor}" Text="Show all" />
                     </Frame>
                 </StackLayout>
                 <CollectionView
@@ -83,50 +70,77 @@
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Frame
-                                Padding="0"
-                                CornerRadius="8"
-                                HasShadow="False"
-                                HorizontalOptions="End"
-                                IsClippedToBounds="True"
-                                VerticalOptions="Center">
-                                <Image
-                                    Aspect="AspectFill"
+                            <Grid>
+
+                                <Frame
+                                    Padding="0"
+                                    CornerRadius="8"
+                                    HasShadow="False"
+                                    HorizontalOptions="End"
+                                    IsClippedToBounds="True"
+                                    VerticalOptions="Center">
+                                    <Image
+                                        Aspect="AspectFill"
+                                        HeightRequest="250"
+                                        HorizontalOptions="Center"
+                                        Source="{Binding UrlToImage}"
+                                        VerticalOptions="Center"
+                                        WidthRequest="300" />
+                                </Frame>
+                                <BoxView
+                                    BackgroundColor="#55000000"
+                                    CornerRadius="8"
                                     HeightRequest="250"
-                                    HorizontalOptions="Center"
-                                    Source="{Binding UrlToImage}"
+                                    HorizontalOptions="End"
                                     VerticalOptions="Center"
                                     WidthRequest="300" />
-                            </Frame>
+                                <Label
+                                    Padding="15,15"
+                                    FontFamily="fa-solid"
+                                    FontSize="22"
+                                    HorizontalOptions="End"
+                                    Text="{x:Static local:IconFontSolid.Bookmark}"
+                                    TextColor="{StaticResource TextFontColor}" />
+                                <Label
+                                    Padding="10,0"
+                                    FontAttributes="Bold"
+                                    FontSize="20"
+                                    LineBreakMode="TailTruncation"
+                                    MaxLines="3"
+                                    Style="{StaticResource TextLabelStyle}"
+                                    Text="{Binding Title}"
+                                    TextColor="{StaticResource TextFontColor}"
+                                    TranslationY="120"
+                                    WidthRequest="300" />
+                                <Label
+                                    Padding="10,10"
+                                    Style="{StaticResource MoreContentBackgroundColor}"
+                                    Text="{Binding Source.Name}"
+                                    TranslationY="200" />
+                            </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
 
             </Grid>
-            <Grid Grid.Row="2" Margin="0,30,0,0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
+            <Grid
+                Grid.Row="2"
+                Margin="0,30,0,0"
+                RowDefinitions="Auto, *">
                 <StackLayout Orientation="Horizontal">
                     <Label
-                        FontFamily="Roboto-Black"
-                        FontSize="24"
                         HorizontalOptions="StartAndExpand"
+                        Style="{StaticResource SubHeaderLabelStyle}"
                         Text="Middle East"
-                        TextColor="Black"
                         VerticalOptions="Center" />
                     <Frame
                         Padding="8,4"
-                        BackgroundColor="#EEEEEE"
+                        BackgroundColor="{StaticResource AccentBackgroundColor}"
                         CornerRadius="8"
                         HasShadow="False"
                         HorizontalOptions="End"
                         VerticalOptions="Center">
-                        <Label
-                            FontFamily="OpenSans-SemiBold"
-                            FontSize="14"
-                            Text="Show all" />
+                        <Label Style="{StaticResource MoreContentBackgroundColor}" Text="Show all" />
                     </Frame>
                 </StackLayout>
 
@@ -134,13 +148,15 @@
                     Grid.Row="1"
                     ItemsSource="{Binding MiddleEastArticles}"
                     VerticalScrollBarVisibility="Never">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+                    </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Grid Margin="0,10" VerticalOptions="Center">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
+                            <Grid
+                                Margin="0,10"
+                                ColumnDefinitions="Auto, *"
+                                VerticalOptions="Center">
                                 <Frame
                                     Margin="0,10,0,0"
                                     Padding="0"
@@ -154,16 +170,19 @@
                                 </Frame>
                                 <StackLayout Grid.Column="1" Margin="5,10">
                                     <Label
-                                        FontFamily="PlayfairDisplay-SemiBold"
-                                        FontSize="16"
+                                        Style="{StaticResource TextLabelStyle}"
                                         Text="{Binding Title}"
                                         VerticalOptions="Center" />
                                     <Label
                                         FontFamily="PlayfairDisplay-Regular"
                                         FontSize="14"
                                         Text="{Binding PublishedAt}"
-                                        TextColor="Gray"
+                                        TextColor="{StaticResource SubtitleFontColor}"
                                         VerticalOptions="End" />
+                                    <BoxView
+                                        Margin="0,5,0,0"
+                                        BackgroundColor="#D1D2E3"
+                                        HeightRequest="1" />
                                 </StackLayout>
 
                             </Grid>
