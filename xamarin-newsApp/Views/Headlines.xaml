@@ -21,10 +21,13 @@
                     FontFamily="Chomsky-Font"
                     FontSize="28"
                     HorizontalOptions="StartAndExpand"
+                    ScaleX="1.1"
+                    ScaleY="1.5"
                     Text="The New York Times"
                     TextColor="Black" />
                 <Frame
-                    Padding="{OnPlatform iOS='8,-5', Android='8,4'}"
+                    Padding="{OnPlatform iOS='8,-5',
+                                         Android='8,4'}"
                     BackgroundColor="#EEEEEE"
                     CornerRadius="8"
                     HasShadow="False"
@@ -73,25 +76,27 @@
                     Margin="0,10"
                     HeightRequest="250"
                     HorizontalScrollBarVisibility="Never"
-                    ItemsSource="{Binding Articles}"
+                    ItemsSource="{Binding HeadlineArticles}"
                     WidthRequest="80">
                     <CollectionView.ItemsLayout>
-                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10"/>
+                        <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Frame
                                 Padding="0"
                                 CornerRadius="8"
-                                IsClippedToBounds="True"
                                 HasShadow="False"
                                 HorizontalOptions="End"
+                                IsClippedToBounds="True"
                                 VerticalOptions="Center">
-                                <Image WidthRequest="300" HeightRequest="250"
+                                <Image
+                                    Aspect="AspectFill"
+                                    HeightRequest="250"
                                     HorizontalOptions="Center"
                                     Source="{Binding UrlToImage}"
-                                    Aspect="AspectFill"
-                                    VerticalOptions="Center" />
+                                    VerticalOptions="Center"
+                                    WidthRequest="300" />
                             </Frame>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
@@ -124,101 +129,49 @@
                             Text="Show all" />
                     </Frame>
                 </StackLayout>
-                <StackLayout Grid.Row="1">
-                    <Grid Margin="0,10" VerticalOptions="Center">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Frame
-                            Margin="0,10,0,0"
-                            Padding="0"
-                            BackgroundColor="DarkGray"
-                            CornerRadius="10"
-                            HasShadow="False"
-                            HeightRequest="80"
-                            IsClippedToBounds="True"
-                            WidthRequest="100">
-                            <Image Aspect="AspectFill" Source="https://static01.nyt.com/images/2021/02/10/world/10saudi/merlin_180440862_ae173423-a50d-4b11-afd5-de499c036529-facebookJumbo.jpg" />
-                        </Frame>
-                        <StackLayout Grid.Column="1" Margin="5,10">
-                            <Label
-                                FontFamily="PlayfairDisplay-SemiBold"
-                                FontSize="16"
-                                Text="Egypt Is on Edge as Security Tightens Over Protests"
-                                VerticalOptions="Center" />
-                            <Label
-                                FontFamily="PlayfairDisplay-Regular"
-                                FontSize="14"
-                                Text="Sept. 26, 2019 - 1:41 PM"
-                                TextColor="Gray"
-                                VerticalOptions="End" />
-                        </StackLayout>
 
-                    </Grid>
-                    <Grid VerticalOptions="Center">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Frame
-                            Margin="0,10,0,0"
-                            Padding="0"
-                            BackgroundColor="DarkGray"
-                            CornerRadius="10"
-                            HasShadow="False"
-                            HeightRequest="80"
-                            IsClippedToBounds="True"
-                            WidthRequest="100">
-                            <Image Aspect="AspectFill" Source="https://static01.nyt.com/images/2021/02/10/world/10saudi/merlin_180440862_ae173423-a50d-4b11-afd5-de499c036529-facebookJumbo.jpg" />
-                        </Frame>
-                        <StackLayout Grid.Column="1" Margin="5,10">
-                            <Label
-                                FontFamily="PlayfairDisplay-SemiBold"
-                                FontSize="16"
-                                Text="Egypt Is on Edge as Security Tightens Over Protests"
-                                VerticalOptions="Center" />
-                            <Label
-                                FontFamily="PlayfairDisplay-Regular"
-                                FontSize="14"
-                                Text="Sept. 26, 2019 - 1:41 PM"
-                                TextColor="Gray"
-                                VerticalOptions="End" />
-                        </StackLayout>
+                <CollectionView
+                    Grid.Row="1"
+                    ItemsSource="{Binding MiddleEastArticles}"
+                    VerticalScrollBarVisibility="Never">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0,10" VerticalOptions="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Frame
+                                    Margin="0,10,0,0"
+                                    Padding="0"
+                                    BackgroundColor="DarkGray"
+                                    CornerRadius="10"
+                                    HasShadow="False"
+                                    HeightRequest="80"
+                                    IsClippedToBounds="True"
+                                    WidthRequest="100">
+                                    <Image Aspect="AspectFill" Source="{Binding UrlToImage}" />
+                                </Frame>
+                                <StackLayout Grid.Column="1" Margin="5,10">
+                                    <Label
+                                        FontFamily="PlayfairDisplay-SemiBold"
+                                        FontSize="16"
+                                        Text="{Binding Title}"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        FontFamily="PlayfairDisplay-Regular"
+                                        FontSize="14"
+                                        Text="{Binding PublishedAt}"
+                                        TextColor="Gray"
+                                        VerticalOptions="End" />
+                                </StackLayout>
 
-                    </Grid>
-                    <Grid VerticalOptions="Center">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Frame
-                            Margin="0,10,0,0"
-                            Padding="0"
-                            BackgroundColor="DarkGray"
-                            CornerRadius="10"
-                            HasShadow="False"
-                            HeightRequest="80"
-                            IsClippedToBounds="True"
-                            WidthRequest="100">
-                            <Image Aspect="AspectFill" Source="https://static01.nyt.com/images/2021/02/10/world/10saudi/merlin_180440862_ae173423-a50d-4b11-afd5-de499c036529-facebookJumbo.jpg" />
-                        </Frame>
-                        <StackLayout Grid.Column="1" Margin="5,10">
-                            <Label
-                                FontFamily="PlayfairDisplay-SemiBold"
-                                FontSize="16"
-                                Text="Egypt Is on Edge as Security Tightens Over Protests"
-                                VerticalOptions="Center" />
-                            <Label
-                                FontFamily="PlayfairDisplay-Regular"
-                                FontSize="14"
-                                Text="Sept. 26, 2019 - 1:41 PM"
-                                TextColor="Gray"
-                                VerticalOptions="End" />
-                        </StackLayout>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
 
-                    </Grid>
-                </StackLayout>
+
 
 
             </Grid>
