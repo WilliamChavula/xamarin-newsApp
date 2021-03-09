@@ -21,13 +21,15 @@ namespace xamarin_newsApp
         protected override void OnInitialized()
         {
             InitializeComponent();
-            NavigationService.NavigateAsync("Headlines");
+            NavigationService.NavigateAsync("NavigationPage/Headlines");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<Headlines, HeadlinesViewModel>();
+            containerRegistry.RegisterForNavigation<ArticlePage, ArticlePageViewModel>();
+            containerRegistry.RegisterForNavigation<ArticlesList, ArticlesListPageViewModel>();
             containerRegistry.RegisterSingleton<INewsService, NewsService>();
 
         }
